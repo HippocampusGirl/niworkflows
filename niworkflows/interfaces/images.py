@@ -609,7 +609,7 @@ class MatchHeader(SimpleInterface):
         # Set qform
         qform = refhdr.get_qform()
         qcode = int(refhdr["qform_code"])
-        if not np.allclose(qform, imghdr.get_qform()):
+        if not np.allclose(qform, imghdr.get_qform(), atol=1e-2):  # tolerance of 0.01 mm
             LOGGER.warning("q-forms of reference and mask are substantially different")
         imghdr.set_qform(qform, qcode)
 
